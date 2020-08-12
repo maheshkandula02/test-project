@@ -1,0 +1,57 @@
+package com.demo.main;
+
+
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.mapping.List;
+
+import com.demo.model.Details;
+import com.demo.model.Report1;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Configuration configuration=new Configuration().configure(); 
+		StandardServiceRegistryBuilder builder=new StandardServiceRegistryBuilder()
+				.applySettings(configuration.getProperties());
+		SessionFactory factory=configuration.buildSessionFactory(builder.build());
+		Session session=factory.openSession();
+		Transaction transaction=session.beginTransaction();
+		Report1 r1=new Report1(6, 30, 8);
+		Report1 r2=new Report1(5,45,7);
+		Report1 r3=new Report1(5, 40, 6);
+		Report1 r4=new Report1(3, 45, 6);
+		
+		Details d1=new Details("Firt_Year", "Mahesh", "Simplilearn", "java",r1);
+		Details d2=new Details("Second_Year", "Sai", "Dr.Vinay", "java_Fsd",r2);
+		Details d3=new Details("Third_Year", "Kumar", "Bhawna_Gunwani", "java_Basics",r3);
+		Details d4=new Details("forth_Year", "SaiKumar", "Dr.Vinay", "java_framework",r4);
+		session.save(r1);
+		session.save(r2);
+		session.save(r3);
+		session.save(r4);
+		session.save(d1);
+		session.save(d2);
+		session.save(d3);
+		session.save(d4);
+		
+		//Details d=new Details();
+		//d.setId(2);
+		//session.delete(d);
+		
+		
+		
+		
+		transaction.commit();
+		session.close();
+		factory.close();
+
+	}
+
+}

@@ -1,0 +1,99 @@
+package com.demo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table
+
+public class Details {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
+	private String Student_class;
+	private String Student_name;
+	private String Teacher_Name;
+	private String Subject_Name;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="aid")
+	
+	private Report1 report;
+	
+	public  Details() {
+		
+		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getStudent_class() {
+		return Student_class;
+	}
+
+	public void setStudent_class(String student_class) {
+		Student_class = student_class;
+	}
+
+	public String getStudent_name() {
+		return Student_name;
+	}
+
+	public void setStudent_name(String student_name) {
+		Student_name = student_name;
+	}
+
+	public String getTeacher_Name() {
+		return Teacher_Name;
+	}
+
+	public void setTeacher_Name(String teacher_Name) {
+		Teacher_Name = teacher_Name;
+	}
+
+	public String getSubject_Name() {
+		return Subject_Name;
+	}
+
+	public void setSubject_Name(String subject_Name) {
+		Subject_Name = subject_Name;
+	}
+
+	public Report1 getReport() {
+		return report;
+	}
+
+	public void setReport(Report1 report) {
+		this.report = report;
+	}
+
+	public Details(String student_class, String student_name, String teacher_Name, String subject_Name,
+			Report1 report) {
+		super();
+		Student_class = student_class;
+		Student_name = student_name;
+		Teacher_Name = teacher_Name;
+		Subject_Name = subject_Name;
+		this.report = report;
+	}
+
+	@Override
+	public String toString() {
+		return "Details [id=" + id + ", Student_class=" + Student_class + ", Student_name=" + Student_name
+				+ ", Teacher_Name=" + Teacher_Name + ", Subject_Name=" + Subject_Name + ", report=" + report + "]";
+	}
+
+	
+}
